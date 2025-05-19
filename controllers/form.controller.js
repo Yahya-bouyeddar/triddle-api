@@ -25,8 +25,13 @@ export const createForm = async (req, res) => {
 export const getAllForms = async (req, res) => {
   try {
     const forms = await prisma.form.findMany({ where: {
-        createdById: req.user.id  // ✅ on filtre par utilisateur connecté
-      }
+        createdById: req.user.id,
+        
+          
+        // ✅ on filtre par utilisateur connecté
+      },
+      include : {_count:{select:{responses : true}}}
+
     });
     res.status(200).json(forms);
   } catch (error) {
