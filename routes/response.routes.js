@@ -4,10 +4,8 @@ import protect from '../middleware/protect.js';
 
 const router = express.Router();
 
-// 🟢 Enregistrer une réponse dans un formulaire
 router.post('/forms/:formId/responses', submitResponse);
 
-// 🟢 Obtenir toutes les réponses d’un formulaire
-router.get('/forms/:formId/responses', getResponsesByForm);
+router.get('/forms/:formId/responses',protect, getResponsesByForm);
 
 export default router;

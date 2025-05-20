@@ -1,27 +1,25 @@
 import prisma from '../prismaClient.js';
 
-// ✅ Ajouter une question dans un formulaire
 export const addQuestion = async (req, res) => {
-  const { formId } = req.params; // 1️⃣ Récupérer l'ID du formulaire dans l'URL
-  const { label, type, options } = req.body; // 2️⃣ Récupérer les données envoyées depuis le frontend
+  const { formId } = req.params; 
+  const { label, type, options } = req.body; 
 
   try {
     const question = await prisma.question.create({
       data: {
         label,
         type,
-        options: options || null, // 3️⃣ options est facultatif
+        options: options || null, 
         formId,
       },
     });
 
-    res.status(201).json(question); // 4️⃣ On renvoie la question créée
+    res.status(201).json(question); 
   } catch (error) {
     console.error(error.message);
     res.status(500).json({ message: "Erreur lors de l'ajout de la question." });
   }
 };
-// ✅ Obtenir toutes les questions d’un formulaire
 export const getQuestionsByForm = async (req, res) => {
   const { formId } = req.params;
 

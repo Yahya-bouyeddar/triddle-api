@@ -1,6 +1,6 @@
 import prisma from '../prismaClient.js';
 
-// 🟢 1. Créer un formulaire
+
 export const createForm = async (req, res) => {
   const { title } = req.body;
 
@@ -8,7 +8,7 @@ export const createForm = async (req, res) => {
     const form = await prisma.form.create({
       data: {
         title,
-        createdById: req.user.id, // ✅ sécurisé
+        createdById: req.user.id, 
         publicUrl: Math.random().toString(36).substring(2, 12),
       },
     });
@@ -21,14 +21,14 @@ export const createForm = async (req, res) => {
 };
 
 
-// 🟢 2. Obtenir tous les formulaires
+
 export const getAllForms = async (req, res) => {
   try {
     const forms = await prisma.form.findMany({ where: {
         createdById: req.user.id,
         
           
-        // ✅ on filtre par utilisateur connecté
+       
       },
       include : {_count:{select:{responses : true}}}
 
@@ -59,7 +59,7 @@ export const getFormByPublicUrl = async (req, res) => {
   }
 };
 
-// 🟢 3. Obtenir un formulaire avec ses questions
+
 export const getFormById = async (req, res) => {
   const { id } = req.params;
 
@@ -79,7 +79,6 @@ export const getFormById = async (req, res) => {
   }
 };
 
-// 🟢 4. Obtenir les statistiques du formulaire
 export const getFormAnalytics = async (req, res) => {
   const { id } = req.params;
 

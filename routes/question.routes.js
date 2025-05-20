@@ -4,10 +4,8 @@ import protect from '../middleware/protect.js';
 
 const router = express.Router();
 
-// 🟢 Ajouter une question à un formulaire
 router.post('/forms/:formId/questions',protect, addQuestion);
 
-// 🟢 Obtenir toutes les questions d’un formulaire
-router.get('/forms/:formId/questions', getQuestionsByForm);
+router.get('/forms/:formId/questions',protect, getQuestionsByForm);
 
 export default router;

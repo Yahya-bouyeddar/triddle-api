@@ -17,6 +17,5 @@ app.use("/api/forms", formRoutes);
 app.use("/api", questionRoutes);
 app.use('/api', responseRoutes);
 
-// d'autres routes ici
 
 export default app;

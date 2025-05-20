@@ -3,7 +3,7 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import prisma from '../prismaClient.js';
 
-// 🔐 Connexion (login)
+
 export const loginUser = async (req, res) => {
   const { email, password } = req.body;
 
@@ -37,7 +37,6 @@ export const loginUser = async (req, res) => {
   }
 };
 
-// ✅ Enregistrement (register)
 export const registerUser = async (req, res) => {
   const { fullName, email, password } = req.body;
 
